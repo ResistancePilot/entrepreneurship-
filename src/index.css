@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --edge:#0b0520; --panel:#2b1b5e; --panel-hi:#4a34a0; --panel-lo:#1b1040; --gold:#ffd23f; }
+
+html, body, #root { min-height: 100%; }
+body {
+  margin: 0; background: #1f1347; color: #fff; font-family: "VT323", monospace; font-size: 22px; line-height: 1.15;
+  -webkit-font-smoothing: none; image-rendering: pixelated;
+}
+.font-pixel { font-family: "Press Start 2P", monospace; letter-spacing: 0; }
+svg.px, .px-img { image-rendering: pixelated; shape-rendering: crispEdges; }
+
+/* Panels */
+.px-panel {
+  position: relative; background: var(--panel); border: 4px solid var(--edge);
+  box-shadow: inset 4px 4px 0 var(--panel-hi), inset -4px -4px 0 var(--panel-lo), 6px 6px 0 rgba(0,0,0,.35);
+}
+.px-panel-dark { background: #150b2e; box-shadow: inset 4px 4px 0 #2a1a5a, inset -4px -4px 0 #0b0520, 6px 6px 0 rgba(0,0,0,.35); }
+.px-panel-gold { background: #5a3d00; border-color: #2a1c00; box-shadow: inset 4px 4px 0 #ffd23f, inset -4px -4px 0 #a06a00, 6px 6px 0 rgba(0,0,0,.35); }
+
+/* Buttons */
+.px-btn {
+  font-family: "Press Start 2P", monospace; font-size: 12px; color: #1b1040; background: var(--gold); border: 4px solid var(--edge);
+  padding: 14px 18px; cursor: pointer; text-transform: uppercase; position: relative; user-select: none;
+  box-shadow: inset 4px 4px 0 #fff3a8, inset -4px -4px 0 #d49b00, 0 6px 0 var(--edge);
+  transition: transform .06s;
+}
+.px-btn:hover:not(:disabled) { filter: brightness(1.08); }
+.px-btn:active:not(:disabled) { transform: translateY(4px); box-shadow: inset 4px 4px 0 #fff3a8, inset -4px -4px 0 #d49b00, 0 2px 0 var(--edge); }
+.px-btn:disabled { opacity: .45; cursor: not-allowed; }
+.px-btn-green { background: #3ddc84; color: #06290f; box-shadow: inset 4px 4px 0 #9bffc4, inset -4px -4px 0 #1b9a55, 0 6px 0 var(--edge); }
+.px-btn-red { background: #ff4d6d; color: #fff; box-shadow: inset 4px 4px 0 #ff9bb0, inset -4px -4px 0 #b3203d, 0 6px 0 var(--edge); }
+.px-btn-blue { background: #35d0ff; color: #05243a; box-shadow: inset 4px 4px 0 #a8ecff, inset -4px -4px 0 #1796c4, 0 6px 0 var(--edge); }
+.px-btn-ghost { background: #3a2680; color: #fff; box-shadow: inset 4px 4px 0 #5b43b0, inset -4px -4px 0 #24165a, 0 6px 0 var(--edge); }
+.px-btn-sm { font-size: 10px; padding: 10px 12px; }
+
+.px-input {
+  font-family: "Press Start 2P", monospace; font-size: 14px; background: #0b0520; color: #fff; border: 4px solid #4a34a0;
+  padding: 14px 12px; width: 100%; outline: none; text-transform: none; border-radius: 0;
+}
+.px-input:focus { border-color: var(--gold); }
+
+/* Range slider */
+input[type=range].px-range { -webkit-appearance: none; appearance: none; width: 100%; height: 28px; background: transparent; cursor: pointer; }
+input[type=range].px-range::-webkit-slider-runnable-track { height: 14px; background: #0b0520; border: 4px solid #4a34a0; }
+input[type=range].px-range::-moz-range-track { height: 8px; background: #0b0520; border: 4px solid #4a34a0; }
+input[type=range].px-range::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 30px; margin-top: -13px; background: var(--thumb, #ffd23f); border: 4px solid var(--edge); box-shadow: inset 3px 3px 0 rgba(255,255,255,.6); }
+input[type=range].px-range::-moz-range-thumb { width: 16px; height: 22px; border-radius: 0; background: var(--thumb, #ffd23f); border: 4px solid var(--edge); }
+
+/* Animations */
+@keyframes floatUp { 0% { transform: translateY(0) scale(.8); opacity: 0; } 15% { opacity: 1; transform: translateY(-8px) scale(1.1); } 100% { transform: translateY(-70px) scale(1); opacity: 0; } }
+@keyframes pop { 0% { transform: scale(.4); opacity: 0; } 60% { transform: scale(1.12); opacity: 1; } 100% { transform: scale(1); } }
+@keyframes shake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+@keyframes blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+@keyframes walk { from { transform: translateX(-10%); } to { transform: translateX(110%); } }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes cloud { from { transform: translateX(-30%); } to { transform: translateX(130vw); } }
+@keyframes coinSpin { 0%,100% { transform: scaleX(1); } 50% { transform: scaleX(.15); } }
+@keyframes flashGreen { 0% { background-color: rgba(61,220,132,.7); } 100% { background-color: transparent; } }
+@keyframes flashRed { 0% { background-color: rgba(255,77,109,.7); } 100% { background-color: transparent; } }
+@keyframes slideIn { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes confetti { 0% { transform: translateY(-10vh) rotate(0); opacity: 1; } 100% { transform: translateY(110vh) rotate(540deg); opacity: .9; } }
+@keyframes glow { 0%,100% { filter: drop-shadow(0 0 0 rgba(255,210,63,0)); } 50% { filter: drop-shadow(0 0 14px rgba(255,210,63,.9)); } }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes twinkle { 0%,100% { opacity: .3; } 50% { opacity: 1; } }
+.anim-pop { animation: pop .45s steps(6) both; }
+.anim-shake { animation: shake .5s steps(8) both; }
+.anim-blink { animation: blink 1s steps(1) infinite; }
+.anim-bob { animation: bob 1.2s steps(2) infinite; }
+.anim-glow { animation: glow 1.6s ease-in-out infinite; }
+.anim-slide { animation: slideIn .4s steps(5) both; }
+.flash-green { animation: flashGreen .9s steps(6) both; }
+.flash-red { animation: flashRed .9s steps(6) both; }
+.coin-spin { animation: coinSpin .9s steps(4) infinite; }
+.float-up { animation: floatUp 1.8s steps(14) both; pointer-events: none; }
+.rank-row { transition: transform .9s cubic-bezier(.3,1.4,.5,1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-bob, .anim-blink, .anim-glow, .coin-spin { animation: none; }
+}
+.text-shadow-px { text-shadow: 3px 3px 0 #0b0520; }
+.scroll-thin::-webkit-scrollbar { width: 10px; } .scroll-thin::-webkit-scrollbar-thumb { background: #4a34a0; }

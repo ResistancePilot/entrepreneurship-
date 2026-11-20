@@ -1,0 +1,5 @@
+project_id = "pixel-empire"
+
+[functions.game]
+# The function validates its own admin / team tokens; browsers call it with the anon key.
+verify_jwt = false
